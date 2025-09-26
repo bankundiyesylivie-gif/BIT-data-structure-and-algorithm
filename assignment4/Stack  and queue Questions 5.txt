@@ -1,0 +1,213 @@
+Stack Questions
+1. Practical;(Rwanda):
+
+Scenario: A MoMo app pushe;; ["Enter PIN", "Select Service", "Confirm Payment"]. Undo last two.
+Stack before;; undo:
+["Enter PIN", "Select Service", "Confirm Payment"]
+Undo two; (pop twice):
+
+Pop "Confirm Payment" → ["Enter PIN", "Select Service"]
+
+Pop "Select Service" → ["Ente;;
+Stack before pop: ["Q1", "Q2", "Q3", "Q4"]
+
+Pop "Q4"
+
+Pop "Q3"
+ What is now on top?
+Answer: "Q2"
+
+3. Challenge:
+
+Use a stack to reverse the characters of the word "Rwanda".
+
+Process:
+Push each character to a stack:
+Stack: ['R', 'w', 'a', 'n', 'd', 'a']
+
+Now pop all to reverse:
+
+Pop: 'a'
+
+Pop: 'd'
+
+Pop: 'n'
+
+Pop: 'a'
+
+Pop: 'w'
+
+Pop: 'R'
+
+ Reversed word: "adnawR"
+
+4. Reflection:
+
+Why is LIFO not suitable for customer service scenarios?
+
+Answer:
+LIFO (Last-In, First-Out) serves the newest person first, ignoring those who have been waiting longer. In customer service, this is unfair and inefficient because it delays help for those who came first. This could cause frustration and reduce trust in the service.
+
+Queue Questions
+1. Practical (Rwanda):
+
+Scenario: At an RSSB office, 4 clients arrive for pension services. After 2 are served, who is next?
+
+Queue: ["Client1", "Client2", "Client3", "Client4"]
+
+Serve 1 → "Client1" gone
+
+Serve 2 → "Client2" gone
+ Who is next?
+Answer: "Client3"
+
+2. Practical (Rwanda):
+
+Scenario: In a Kigali restaurant, 5 food orders are queued. Who gets served third?
+
+Queue: ["Order1", "Order2", "Order3", "Order4", "Order5"]
+ Third served:
+Answer: "Order3"
+
+3. Challenge:
+
+Design a priority queue for hospital emergencies. Explain why it's better than a simple queue.
+
+Design:
+A priority queue serves patients based on urgency, not arrival time. Each patient has a priority level (e.g., critical, serious, stable).
+
+Example:
+
+[("PatientA", Priority=3), ("PatientB", Priority=1), ("PatientC", Priority=2)]
+
+
+Sorted by priority:
+
+Serve PatientB (1 = highest priority)
+
+Then PatientC
+
+Then PatientA
+
+ Why is this better?
+In emergencies, treating the sickest patients first can save lives. A simple queue would delay care for critical patients if they arrive after others.
+
+4. Reflection:
+
+Why is fairness important in queues for public services?
+
+Answer:
+Fairness builds trust and order in society. If queues are unfair (e.g., some jump ahead), it leads to frustration, conflict, and inefficiency. Fair queues ensure everyone is treated equally, which is especially important in services like healthcare, banking, or government offices.
+
+Let me know when you're ready for Project 6 stack questions!
+
+You said:
+design the solution in clear algorithimic sequence and explain each step alongside the corresponding code lines
+ChatGPT said:
+
+Great! Let’s take a practical approach and design algorithmic solutions for both stack and queue operations from Project 5.
+
+
+Stack: Reverse the word "Rwanda"
+
+Queue: Serve RSSB client*(who's next?)
+
+Priority Queue: Hospital emergencies
+
+For each, I will:
+
+Write the algorithm steps clearly
+
+Provide matching Python code
+
+Explain each step alongside the code
+
+ 1. Stack Challenge: Reverse the word "Rwanda"
+Algorithm (Steps):
+
+Create an empty stack.
+
+Push each character of "Rwanda" into the stack.
+
+Pop all characters from the stack and join them to form the reversed word.
+
+Python Code and Explanation:
+# Step 1: Initialize empty stack
+stack = []
+
+# Step 2: Push each character into the stack
+for char in "Rwanda":
+    stack.append(char)  # push operation
+# stack = ['R', 'w', 'a', 'n', 'd', 'a']
+
+# Step 3: Pop characters to reverse the word
+reversed_word = ''
+while stack:
+    reversed_word += stack.pop()  # pop operation
+# reversed_word = 'adnawR'
+
+print("Reversed Word:", reversed_word)
+
+Output:
+Reversed Word: adnawR
+
+2. Queue Practical: Who is next at RSSB after serving two?
+Algorithm (Steps):
+
+Create a queue with 4 clients.
+
+Serve (dequeue) the first two clients.
+
+The next in line is now at the front of the queue.
+
+Python Code and Explanation:
+from collections import deque
+
+# Step 1: Initialize queue
+queue = deque(["Client1", "Client2", "Client3", "Client4"])
+
+# Step 2: Serve first two clients (dequeue)
+queue.popleft()  # Removes Client1
+queue.popleft()  # Removes Client2
+
+# Step 3: Identify who's next
+next_client = queue[0]  # Front of the queue
+
+print("Next client to be served:", next_client)
+
+ Output:
+Next client to be served: Client3
+ 3. Priority Queue Challenge: Hospital Emergencies
+Algorithm (Steps):
+
+Create a list of patients with their priority (1 = highest).
+
+Sort patients by priority (ascending).
+
+Serve patients in order of priority.
+
+Python Code and Explanation:
+# Step 1: Define patients with priorities
+patients = [
+    ("PatientA", 3),  # Stable
+    ("PatientB", 1),  # Critical
+    ("PatientC", 2)   # Serious
+]
+
+# Step 2: Sort patients by priority (lower number = higher priority)
+patients.sort(key=lambda x: x[1])
+
+# Step 3: Serve patients in order of priority
+for patient in patients:
+    print("Serving:", patient[0], "- Priority:", patient[1])
+
+Output:
+Serving: PatientB - Priority: 1
+Serving: PatientC - Priority: 2
+Serving: PatientA - Priority: 3
+
+ Summary of Concepts
+Concept	Data Structure	Behavior	Example Scenario
+Stack (LIFO)	List	Last-In, First-Out	Reversing word "Rwanda"
+Queue (FIFO)	deque	First-In, First-Out	Serving clients at RSSB
+Priority Queue	Sorted List	Based on priority	Hospital emergency triage
